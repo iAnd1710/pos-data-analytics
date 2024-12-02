@@ -18,7 +18,7 @@ def show_analysis():
     st.title("📈 Análise de Dados")
     st.markdown("Análise detalhada dos preços históricos do petróleo.")
 
-    tab1,tab2 = st.tabs(["Guia 1", "Guia 2"])
+    tab1,tab2 = st.tabs(["Guia 1", "Países produtores"])
 
     with tab1:
         # Caminho para o arquivo de dados
@@ -50,7 +50,7 @@ def show_analysis():
         
         # Filtros
         opcoes_periodo = ["Último Dia", "Última Semana", "Último Mês", "Últimos 12 Meses", "Últimos 5 Anos", "Todo o Período"]
-        periodo_selecionado = st.selectbox("Selecione o Período", opcoes_periodo)
+        periodo_selecionado = st.selectbox("Selecione o Período", opcoes_periodo, index=3)
         
         # Filtrar dados conforme o período selecionado
         data_fim = df['data'].max()
