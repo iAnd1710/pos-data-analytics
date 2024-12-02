@@ -89,7 +89,7 @@ def show_history():
     st.title("🕰️ Histórico de Preços do Petróleo Brent")
     
     # Obtendo dados de exemplo
-    df_brent_oil = pd.read_excel('data/petroleo.xlsx')
+    df_brent_oil = pd.read_excel('./data/petroleo.xlsx')
     
     # Criando o gráfico de linha para a série temporal
     fig = go.Figure()
