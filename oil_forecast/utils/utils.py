@@ -110,7 +110,6 @@ def show_predictions(data, forecast_steps=30):
     # -------------------
     # Visualização das Previsões
     # -------------------
-    st.subheader('🔮 Previsões para Datas Futuras')
     
     fig_future = go.Figure()
 
@@ -126,13 +125,14 @@ def show_predictions(data, forecast_steps=30):
     ))
     
     # Previsão SARIMA
-    fig_future.add_trace(go.Scatter(
+    '''fig_future.add_trace(go.Scatter(
         x=forecast_sarima.index,
         y=forecast_sarima.values,
         mode='lines',
         name='Previsão SARIMA',
         line=dict(color='orange')
     ))
+    '''
     
     # Previsão XGBoost
     fig_future.add_trace(go.Scatter(
@@ -148,7 +148,7 @@ def show_predictions(data, forecast_steps=30):
         xaxis_title='Data',
         yaxis_title='Preço (USD)',
         template='plotly_white',
-        legend=dict(x=0, y=1, bgcolor='rgba(0,0,0,0)')
+        legend=dict(x=1, y=1, bgcolor='rgba(0,0,0,0)')
     )
     
     st.plotly_chart(fig_future, use_container_width=True)
