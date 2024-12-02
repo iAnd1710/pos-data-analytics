@@ -11,7 +11,7 @@ def setup():
 
 # Função principal
 def main():
-    DATA_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../assets/logo.jpg'))
+    DATA_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'assets/logo.jpg'))
 
     setup()
     st.sidebar.image(DATA_FILE_PATH, width=150)
