@@ -2,6 +2,7 @@
 import streamlit as st
 from utils.utils import show_predictions
 import pandas as pd
+import os
 
 def show_predictions_page():
     st.header("🔮 Previsões para Datas Futuras")
@@ -45,7 +46,9 @@ def show_predictions_page():
     
         return data
     
-    data = load_data('./data/petroleo.xlsx')
+    
+    DATA_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/petroleo.xlsx'))
+    data = load_data(DATA_FILE_PATH)
     
     # Definir o número de dias futuros a prever
     forecast_steps = st.slider('Selecione o número de dias para prever', min_value=1, max_value=30, value=30)
