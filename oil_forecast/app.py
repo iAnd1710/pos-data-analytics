@@ -11,7 +11,7 @@ def setup():
 # Função principal
 def main():
     setup()
-    st.sidebar.image("https://via.placeholder.com/150", width=150)
+    st.sidebar.image("assets/logo.jpg", width=150)
     st.sidebar.title("Navegação")
     page = st.sidebar.radio("Ir para", ("Análise de Dados", "Histórico", "Previsões", "Sobre"))
 
