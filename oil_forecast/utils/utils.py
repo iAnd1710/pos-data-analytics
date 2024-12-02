@@ -4,6 +4,7 @@ import numpy as np
 import plotly.graph_objects as go
 import joblib
 import pickle
+import os
 from sklearn.preprocessing import MinMaxScaler
 from xgboost import XGBRegressor
 from statsmodels.tsa.statespace.sarimax import SARIMAX
@@ -21,9 +22,14 @@ def show_predictions(data, forecast_steps=30):
     # -------------------
     # Carregamento dos Modelos
     # -------------------
+    MODEL_SARIMA_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../sarima_model.pkl'))
+    MODEL_XGB_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../xgb_model.joblib'))
+    SCALER_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../scaler.joblib'))
+    XGB_FEATURES_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../xgb_features.pkl'))
+    
     try:
         # Carregar o modelo SARIMA
-        with open('sarima_model.pkl', 'rb') as f:
+        with open(MODEL_SARIMA_FILE_PATH, 'rb') as f:
             results_sarima = pickle.load(f)
     except FileNotFoundError:
         st.error("O arquivo 'sarima_model.pkl' não foi encontrado. Certifique-se de que o modelo SARIMA foi treinado e salvo corretamente.")
@@ -34,9 +40,9 @@ def show_predictions(data, forecast_steps=30):
     
     try:
         # Carregar o modelo XGBoost, scaler e feature names
-        model_xgb = joblib.load('xgb_model.joblib')
-        scaler = joblib.load('scaler.joblib')
-        with open('xgb_features.pkl', 'rb') as f:
+        model_xgb = joblib.load(MODEL_XGB_FILE_PATH)
+        scaler = joblib.load(SCALER_FILE_PATH)
+        with open(XGB_FEATURES_FILE_PATH, 'rb') as f:
             feature_names = pickle.load(f)
     except FileNotFoundError as e:
         st.error(f"Arquivo não encontrado: {e}")
