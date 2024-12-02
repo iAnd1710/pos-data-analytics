@@ -1,5 +1,6 @@
 import streamlit as st
 from components import analysis, history, predictions, about
+import os
 
 # Configurações iniciais
 def setup():
@@ -10,8 +11,10 @@ def setup():
 
 # Função principal
 def main():
+    DATA_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../assets/logo.jpg'))
+
     setup()
-    st.sidebar.image("assets/logo.jpg", width=150)
+    st.sidebar.image(DATA_FILE_PATH, width=150)
     st.sidebar.title("Navegação")
     page = st.sidebar.radio("Ir para", ("Análise de Dados", "Histórico", "Previsões", "Sobre"))
 
