@@ -94,7 +94,7 @@ def show_analysis():
         st.dataframe(df_filtrado.tail(10).sort_values(by='data', ascending=False))
 
     with tab2:
-        df_prod = pd.read_csv('data/producao_petroleo.csv')
+        df_prod = pd.read_csv('./data/producao_petroleo.csv')
         df_prod['Producao'] = df_prod['Producao'].apply(clean_production_value)
         df_prod['Producao_milhoes_bpd'] = df_prod['Producao'] / Decimal('1000000')
 

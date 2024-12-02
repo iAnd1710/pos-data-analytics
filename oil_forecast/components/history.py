@@ -3,49 +3,6 @@ import pandas as pd
 import plotly.graph_objects as go
 import os
 from datetime import datetime
-
-def calculate_RSI(series, period=14):
-    delta = series.diff()
-    gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
-    loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
-    RS = gain / loss
-    return 100 - (100 / (1 + RS))
-
-def calculate_MACD(series, short_period=12, long_period=26, signal_period=9):
-    short_ema = series.ewm(span=short_period, adjust=False).mean()
-    long_ema = series.ewm(span=long_period, adjust=False).mean()
-    macd = short_ema - long_ema
-    signal = macd.ewm(span=signal_period, adjust=False).mean()
-    histogram = macd - signal
-    return macd, signal, histogram
-
-def calculate_EMA(series, span=20):
-    return series.ewm(span=span, adjust=False).mean()
-
-def calculate_ADX(df, window=14):
-    high = df['preco']
-    low = df['preco']
-    close = df['preco']
-    
-    plus_dm = high.diff()
-    minus_dm = low.diff()
-    
-    plus_dm[plus_dm < 0] = 0
-    minus_dm[minus_dm > 0] = 0
-    
-    tr1 = high - low
-    tr2 = (high - close.shift(1)).abs()
-    tr3 = (low - close.shift(1)).abs()
-    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
-    
-    atr = tr.rolling(window).mean()
-    plus_di = 100 * (plus_dm.ewm(alpha=1/window).mean() / atr)
-    minus_di = abs(100 * (minus_dm.ewm(alpha=1/window).mean() / atr))
-    
-    dx = (abs(plus_di - minus_di) / abs(plus_di + minus_di)) * 100
-    adx = dx.rolling(window=window).mean()
-    return adx
-
 '''def show_history():
     st.title("🕰️ Histórico")
     st.markdown("Eventos históricos que influenciaram os preços do petróleo.")

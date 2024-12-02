@@ -45,7 +45,7 @@ def show_predictions_page():
     
         return data
     
-    data = load_data('data/petroleo.xlsx')
+    data = load_data('./data/petroleo.xlsx')
     
     # Definir o número de dias futuros a prever
     forecast_steps = st.slider('Selecione o número de dias para prever', min_value=1, max_value=30, value=30)
