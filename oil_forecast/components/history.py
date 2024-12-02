@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import os
-from datetime import datetime\
+from datetime import datetime
 
 def show_history():
     st.title("🕰️ Histórico de Preços do Petróleo Brent")
@@ -24,8 +24,10 @@ def show_history():
 
     # Eventos históricos
     events = {
+        '1990-01-03': 'Guerra do Golfo',
+        '1999-01-04': 'Corte na produção',
         '2003-03-20': 'Início da Guerra no Iraque',
-        '2008-09-15': 'Crise Financeira Global',
+        '2008-07-01': 'Crise Financeira Global',
         '2010-12-18': 'Primavera Árabe',
         '2014-11-20': 'OPEP não corta produção, preço cai',
         '2016-01-04': 'Acordo de Corte da OPEP',
@@ -78,5 +80,21 @@ def show_history():
 
     # Adicionar a legenda com descrição dos eventos
     st.subheader("Descrição dos Eventos")
+    event_descriptions = {
+        '1990-01-03': 'Guerra do Golfo: A invasão do Kuwait pelo Iraque elevou o preço do petróleo em 229%, alcançando US$ 41,90. A guerra visava o controle da produção, e o Iraque incendiou campos de petróleo na derrota.',
+        '1999-01-04': 'Corte na produção: O preço aumentou 100,3% devido à crise nos Tigres Asiáticos, cortes de produção pela Opep e recuperação econômica global.',
+        '2003-03-20': 'Início da Guerra no Iraque: A guerra começou em 2003 com a invasão liderada pelos EUA no Iraque. Aumentou a instabilidade no Oriente Médio.',
+        '2008-07-01': 'Crise Financeira Global: Em julho de 2008, o petróleo alcançou US$ 147 por barril, impulsionado por alta demanda e tensões geopolíticas. Com a crise financeira global, os preços caíram drasticamente no final do ano. A Opep respondeu com cortes na produção, e estímulos econômicos globais impulsionaram uma recuperação de 56,66% entre fevereiro e junho de 2009.',
+        '2010-12-18': 'Primavera Árabe: Uma série de protestos e revoltas no mundo árabe afetou a produção e os preços do petróleo.',
+        '2014-11-20': 'OPEP não corta produção, preço cai: A decisão da OPEP de não cortar a produção levou a uma queda significativa nos preços do petróleo.',
+        '2016-01-04': 'Acordo de Corte da OPEP: A OPEP e outros produtores concordaram em cortar a produção para estabilizar os preços.',
+        '2020-03-06': 'Pandemia de COVID-19: Queda de 54,25% no preço devido à baixa demanda global. Com cortes de produção e estoques, houve rápida recuperação, com alta de 103,75% entre maio e agosto.',
+        '2022-02-24': 'Invasão da Ucrânia pela Rússia: A invasão russa na Ucrânia causou preocupações com o fornecimento de energia e aumentou os preços do petróleo. A guerra causou alta de 58,13% entre dezembro de 2021 e maio de 2022, com aumento total de 111,3% em dois anos.'
+    }
+
     for i, (date, event) in enumerate(events.items(), 1):
-        st.markdown(f"**{i}. {date}** - {event}")
+        formatted_date = pd.to_datetime(date).strftime('%d/%m/%Y')
+        st.markdown(f"**{i}. {formatted_date}** - {event_descriptions[date]}")
+
+if __name__ == "__main__":
+    show_history()
