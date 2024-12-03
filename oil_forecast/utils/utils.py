@@ -160,7 +160,6 @@ def show_predictions(data, forecast_steps=30):
     
     forecast_df = pd.DataFrame({
         'Data': future_dates,
-        'Previsão SARIMA': forecast_sarima.values,
         'Previsão XGBoost': forecast_xgb.values
     })
     forecast_df.set_index('Data', inplace=True)
@@ -168,3 +167,13 @@ def show_predictions(data, forecast_steps=30):
         "Previsão SARIMA": "{:.2f}",
         "Previsão XGBoost": "{:.2f}"
     }))
+
+    st.subheader('💡 Insights sobre a previsão do preço futuro do barril de petróleo dada a projeção pelo modelo XGBoost')
+    st.markdown("""
+    A previsão mostra a estabilidade do preço do barril de petróleo a partir da segunda quinzena do mês de dezembro. 
+    Início do mês é marcado pelo aumento natural do preço, a exemplo dos  meses anteriores, e reflete os ajustes de 
+    demandas dos principais países consumidores. A tendência histórica, ratificada pelo departamento de pesquisas para 
+    Petróleo e Gás do HSBC na Europa, é uma redução do preço do barril para 2025 na ordem de 12%, marcados pelos fatores 
+    do aumento da produção no Oriente Médio e tendência de pacificação dos conflitos no oriente médio após a transição 
+    de governo dos Estados Unidos.
+    """)
