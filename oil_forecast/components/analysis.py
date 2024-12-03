@@ -137,7 +137,7 @@ def show_analysis():
         top_10 = df_grouped.sort_values('Producao_milhoes_bpd', ascending=False).head(10)
 
         fig_3 = px.bar(top_10, x='Pais', y='Producao_milhoes_bpd',
-                    color_discrete_sequence=["green"],
+                    color_discrete_sequence=["blue"],
                     labels={'Producao_milhoes_bbd': 'Produção média anual (milhões de barris/dia)'},
                     title='Top 10 Maiores Produtores de Petróleo (2000 a 2023) | Produção Média Anual (milhões de barris/dia)')
         
