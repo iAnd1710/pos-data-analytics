@@ -24,7 +24,7 @@ def main():
         history.show_history()
     elif page == "Previsões":
         predictions.show_predictions_page()
-    elif page == "Sobre":
+    elif page == "Conclusões":
         about.show_about()
 
 if __name__ == "__main__":
