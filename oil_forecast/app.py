@@ -16,7 +16,7 @@ def main():
     setup()
     st.sidebar.image(DATA_FILE_PATH, width=150)
     st.sidebar.title("Navegação")
-    page = st.sidebar.radio("Ir para", ("Análise de Dados", "Histórico", "Previsões", "Sobre"))
+    page = st.sidebar.radio("Ir para", ("Análise de Dados", "Histórico", "Previsões", "Conclusões"))
 
     if page == "Análise de Dados":
         analysis.show_analysis()
